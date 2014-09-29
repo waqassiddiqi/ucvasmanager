@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white" >
+
+    <View
+        android:id="@+id/screenSeparator"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        android:background="@android:color/black" >
+    </View>
+
+    <TextView
+        android:id="@+id/lblLogoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/screenSeparator"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="Intro Me"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lblLogoText"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_new" />
+
+    <LinearLayout
+        android:id="@+id/layoutWait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/screenSeparator"
+        android:visibility="gone"
+        android:orientation="vertical" >
+        
+        <ProgressBar
+	        android:id="@+id/progressBar1"
+	        style="?android:attr/progressBarStyleLarge"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_above="@+id/imgLogo"
+	        android:layout_gravity="center"
+	         />
+        
+        <TextView
+            android:id="@+id/lblPrompt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Please wait..." />
+        
+    </LinearLayout>    
+    
+    <LinearLayout
+        android:id="@+id/layoutForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/screenSeparator"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/lblPrompt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Enter your Mobilink number\nand press Continue"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/txtCellNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="phone" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/btnSubscriber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Continue" />
+    </LinearLayout>
+
+</RelativeLayout>

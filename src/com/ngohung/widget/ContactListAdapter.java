@@ -1,13 +1,10 @@
 package com.ngohung.widget;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.ngohung.view.R;
-
+import net.waqassiddiq.app.introme.R;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

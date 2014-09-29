@@ -2,12 +2,12 @@ package com.ngohung.example.adapter;
 
 import java.util.List;
 
+import net.waqassiddiq.app.introme.R;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
 import com.ngohung.example.models.ExampleContactItem;
-import com.ngohung.view.R;
 import com.ngohung.widget.ContactItemInterface;
 import com.ngohung.widget.ContactListAdapter;
 
