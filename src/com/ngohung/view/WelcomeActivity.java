@@ -1,6 +1,12 @@
 package com.ngohung.view;
 
 import net.waqassiddiq.app.introme.R;
+import net.waqassiddiqi.app.introme.business.SubscriptionTask;
+import net.waqassiddiqi.app.introme.model.Subscriber;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,8 +49,30 @@ public class WelcomeActivity extends BaseActivity {
 				
 				layoutWait.setVisibility(View.VISIBLE);
 				layoutForm.setVisibility(View.GONE);
+				
+				new SubscriptionTask(new Subscriber(txtCellNo.getText().toString())).perform();
 			}
-		});
-		
+		});		
 	}
+	
+	@Override
+    public void onResume() {
+        super.onResume();
+
+        registerReceiver(SubscriptionRequestReceiver, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
+    }
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unregisterReceiver(SubscriptionRequestReceiver);
+	}
+	
+	public BroadcastReceiver SubscriptionRequestReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			
+		}		
+	};
 }

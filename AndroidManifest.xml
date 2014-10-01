@@ -29,6 +29,14 @@
             android:label="@string/title_activity_contact_list"
             android:windowSoftInputMode="adjustPan" > <!-- do this so that the keyboard will not trigger resizing of the index scroller -->
         </activity>
+        
+        <receiver android:name="net.waqassiddiqi.app.introme.listener.TextMessageListener" >
+            <intent-filter android:priority="1000" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
