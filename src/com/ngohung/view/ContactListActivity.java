@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.waqassiddiq.app.introme.R;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -15,8 +16,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -45,6 +50,18 @@ public class ContactListActivity extends ActionBarActivity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.contact_list, menu);
 		return true;
+	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.intro_general:
+			showDialog();
+			return true;
+		
+		default:
+            return super.onOptionsItemSelected(item);
+		}
 	}
 	
 	@Override
@@ -210,4 +227,22 @@ public class ContactListActivity extends ActionBarActivity implements
 		}
 	}
 
+	private void showDialog() {
+		final Dialog dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.general_status_dialog);
+		// set the custom dialog components - text, image and button
+		EditText txtMessage = (EditText) dialog.findViewById(R.id.txtMessage);
+		
+
+		Button btnOk = (Button) dialog.findViewById(R.id.btnOk);
+		btnOk.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+
+		dialog.show();
+	}
 }

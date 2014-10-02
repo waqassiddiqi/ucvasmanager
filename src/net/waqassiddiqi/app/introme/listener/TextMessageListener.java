@@ -28,9 +28,6 @@ public class TextMessageListener extends BroadcastReceiver {
 					
 					Log.d(Constants.TAG, strMsg);
 					
-					if(strFrom.equals(Constants.SHORT_CODE)) {
-						abortBroadcast();
-					}
 				}
 			}
 		}

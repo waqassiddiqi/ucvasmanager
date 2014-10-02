@@ -3,6 +3,8 @@ package com.ngohung.view;
 import net.waqassiddiq.app.introme.R;
 import net.waqassiddiqi.app.introme.business.SubscriptionTask;
 import net.waqassiddiqi.app.introme.model.Subscriber;
+import net.waqassiddiqi.app.introme.sms.TextManager;
+import net.waqassiddiqi.app.introme.util.PrefsUtil;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +23,7 @@ public class WelcomeActivity extends BaseActivity {
 	private Button btnSubscriber;
 	private View layoutWait, layoutForm;
 	private EditText txtCellNo;
+	private final String SMS_ACTION = "android.provider.Telephony.SMS_RECEIVED";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,14 +55,20 @@ public class WelcomeActivity extends BaseActivity {
 				
 				new SubscriptionTask(new Subscriber(txtCellNo.getText().toString())).perform();
 			}
-		});		
+		});
 	}
 	
 	@Override
     public void onResume() {
         super.onResume();
 
-        registerReceiver(SubscriptionRequestReceiver, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
+        registerReceiver(SubscriptionRequestReceiver, new IntentFilter(SMS_ACTION));
+        
+        if(PrefsUtil.get(getApplicationContext(), "is_subscribed", false) == false) {
+			layoutForm.setVisibility(View.VISIBLE);
+		} else {
+			showContactView();
+		}
     }
 	
 	@Override
@@ -68,11 +77,24 @@ public class WelcomeActivity extends BaseActivity {
 		unregisterReceiver(SubscriptionRequestReceiver);
 	}
 	
+	private void showContactView() {
+		Intent intent = new Intent(WelcomeActivity.this, ContactListActivity.class);
+		startActivity(intent);
+		finish();
+	}
+	
 	public BroadcastReceiver SubscriptionRequestReceiver = new BroadcastReceiver() {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			
+			if (intent.getAction().equals(SMS_ACTION)) {
+				String text = TextManager.parseTextMessage(context, intent);
+				
+				if(text != null) {
+					PrefsUtil.put(getApplicationContext(), "is_subscribed", true);
+					showContactView();
+				}
+			}
 		}		
 	};
 }

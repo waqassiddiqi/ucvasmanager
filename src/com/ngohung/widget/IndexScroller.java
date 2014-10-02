@@ -8,7 +8,6 @@ import android.graphics.RectF;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Adapter;
 import android.widget.ListView;
