@@ -3,21 +3,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <TextView
+            android:id="@+id/lblTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="General Intro Message"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <View
-    
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/lblTitle"
+        android:background="@android:color/background_dark" >
+    </View>
+
     <ImageView
         android:id="@+id/main_backgroundImage"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:alpha=".15"
         android:layout_centerInParent="true"
         android:adjustViewBounds="true"
+        android:alpha=".15"
         android:src="@drawable/ic_launcher" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_centerInParent="true"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:orientation="vertical" >
 
         <TextView

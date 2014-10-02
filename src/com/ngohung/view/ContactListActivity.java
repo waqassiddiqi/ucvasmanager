@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.waqassiddiq.app.introme.R;
+import net.waqassiddiqi.app.introme.util.Util;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -56,7 +57,10 @@ public class ContactListActivity extends ActionBarActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.intro_general:
-			showDialog();
+			//showDialog();
+			
+			startActivity(new Intent(this, GeneralStatusDialogActivity.class));
+			
 			return true;
 		
 		default:

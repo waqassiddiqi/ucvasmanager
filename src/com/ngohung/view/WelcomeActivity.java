@@ -1,6 +1,7 @@
 package com.ngohung.view;
 
 import net.waqassiddiq.app.introme.R;
+import net.waqassiddiqi.app.introme.Constants;
 import net.waqassiddiqi.app.introme.business.SubscriptionTask;
 import net.waqassiddiqi.app.introme.model.Subscriber;
 import net.waqassiddiqi.app.introme.sms.TextManager;
@@ -22,8 +23,7 @@ public class WelcomeActivity extends BaseActivity {
 	
 	private Button btnSubscriber;
 	private View layoutWait, layoutForm;
-	private EditText txtCellNo;
-	private final String SMS_ACTION = "android.provider.Telephony.SMS_RECEIVED";
+	private EditText txtCellNo;	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class WelcomeActivity extends BaseActivity {
     public void onResume() {
         super.onResume();
 
-        registerReceiver(SubscriptionRequestReceiver, new IntentFilter(SMS_ACTION));
+        registerReceiver(SubscriptionRequestReceiver, new IntentFilter(Constants.SMS_ACTION));
         
         if(PrefsUtil.get(getApplicationContext(), "is_subscribed", false) == false) {
 			layoutForm.setVisibility(View.VISIBLE);
@@ -87,7 +87,7 @@ public class WelcomeActivity extends BaseActivity {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			if (intent.getAction().equals(SMS_ACTION)) {
+			if (intent.getAction().equals(Constants.SMS_ACTION)) {
 				String text = TextManager.parseTextMessage(context, intent);
 				
 				if(text != null) {

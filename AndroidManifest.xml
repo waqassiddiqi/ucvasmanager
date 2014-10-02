@@ -32,6 +32,10 @@
             android:windowSoftInputMode="adjustPan" > <!-- do this so that the keyboard will not trigger resizing of the index scroller -->
         </activity>
         
+        <activity
+            android:name="com.ngohung.view.GeneralStatusDialogActivity" android:theme="@style/PopupTheme">
+        </activity>
+        
         <receiver android:name="net.waqassiddiqi.app.introme.listener.TextMessageListener" >
             <intent-filter android:priority="1000" >
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
